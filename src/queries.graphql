@@ -1,0 +1,28 @@
+query AllProjects {
+  allProject {
+    ...ProjectListing
+  }
+}
+
+query ProjectByIds($ids: [ID!]) {
+  allProject(where: { _id: { in: $ids } }) {
+    ...ProjectListing
+  }
+}
+
+fragment ProjectListing on Project {
+  _id
+  title {
+    pt
+  }
+  tags
+
+  slug {
+    pt {
+      current
+    }
+  }
+  description {
+    pt
+  }
+}
