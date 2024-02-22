@@ -6,6 +6,8 @@ A Next.js starter project with Sanity and GraphQL/Typescript code generation.
 - VSCode auto-complete for GraphQL queries.
 - Embedded studio on /studio route.
 
+Note: This setup can easily be installed on Remix or any other framework.
+
 ## Getting Started
 
 ### 1 - create a .env file on the root folder.
