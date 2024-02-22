@@ -1,6 +1,6 @@
 # Features
 
-This is a Next.js project with Sanity and 100% GraphQL setup.
+A Next.js project with Sanity and GraphQL setup.
 
 - GraphQL code generation with Typescript integration.
 - VSCode auto-complete for GraphQL queries.
@@ -16,7 +16,7 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=projectId
 NEXT_PUBLIC_SANITY_DATASET=production
 ```
 
-### 2 - Run on the terminal
+### 2 - Deploy GraphQL api
 
 `npm run graphql-deploy`
 
@@ -24,12 +24,6 @@ NEXT_PUBLIC_SANITY_DATASET=production
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 ### 4 - Add some content:
@@ -39,3 +33,11 @@ Open [http://localhost:3000/studio](http://localhost:3000/studio) and publish a 
 ### 5 - See the result
 
 Open [http://localhost:3000](http://localhost:3000)
+
+### Notes
+
+All the queries are being placed on the `queries.graphql` file. If you prefer to use tags on typescript files, you will have to edit `graphql.config.ts` and `codegen.ts`.
+
+### Need some help?
+
+Look for <i>Gustavo Bremm</i> on [Sanity Slack](https://slack.sanity.io/).
