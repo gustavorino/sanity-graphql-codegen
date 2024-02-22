@@ -1,10 +1,11 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
+import graphqlConfig from "./graphql.config.js";
 
 const config: CodegenConfig = {
   generates: {
-    ["src/generated.ts"]: {
-      documents: "*/**/queries.graphql",
-      schema: `https://a395zzsr.api.sanity.io/v2023-08-01/graphql/production/default`,
+    ["src/graphql-generated.ts"]: {
+      documents: graphqlConfig.documents,
+      schema: graphqlConfig.schema,
       plugins: [
         "typescript",
         "typescript-operations",

@@ -1,28 +1,40 @@
-query AllProjects {
-  allProject {
-    ...ProjectListing
+query AllPostsListing {
+  allPost {
+    ...PostListing
   }
 }
 
-query ProjectByIds($ids: [ID!]) {
-  allProject(where: { _id: { in: $ids } }) {
-    ...ProjectListing
+query PostBySlug($slug: String) {
+  allPost(where: { slug: { current: { eq: $slug } } }) {
+    ...PostFull
   }
 }
 
-fragment ProjectListing on Project {
-  _id
-  title {
-    pt
-  }
-  tags
-
+fragment PostListing on Post {
+  title
+  description
   slug {
-    pt {
-      current
-    }
+    current
   }
-  description {
-    pt
+  image {
+    ...Image
+  }
+}
+
+fragment PostFull on Post {
+  ...PostListing
+  bodyRaw
+}
+
+fragment Image on Image {
+  asset {
+    _id
+    url
+  }
+  hotspot {
+    x
+    y
+    width
+    height
   }
 }

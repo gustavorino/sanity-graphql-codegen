@@ -30,8 +30,6 @@ export type Block = {
   style?: Maybe<Scalars['String']['output']>;
 };
 
-export type BlockOrImage = Block | Image;
-
 export type BooleanFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['Boolean']['input']>;
@@ -247,77 +245,8 @@ export type IntFilter = {
   neq?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type LocalizedBody = {
-  __typename: 'LocalizedBody';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  enRaw?: Maybe<Scalars['JSON']['output']>;
-  esRaw?: Maybe<Scalars['JSON']['output']>;
-  ptRaw?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type LocalizedBodyFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-};
-
-export type LocalizedBodySorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-};
-
-export type LocalizedSlug = {
-  __typename: 'LocalizedSlug';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  en?: Maybe<Slug>;
-  es?: Maybe<Slug>;
-  pt?: Maybe<Slug>;
-};
-
-export type LocalizedSlugFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  en?: InputMaybe<SlugFilter>;
-  es?: InputMaybe<SlugFilter>;
-  pt?: InputMaybe<SlugFilter>;
-};
-
-export type LocalizedSlugSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  en?: InputMaybe<SlugSorting>;
-  es?: InputMaybe<SlugSorting>;
-  pt?: InputMaybe<SlugSorting>;
-};
-
-export type LocalizedString = {
-  __typename: 'LocalizedString';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  en?: Maybe<Scalars['String']['output']>;
-  es?: Maybe<Scalars['String']['output']>;
-  pt?: Maybe<Scalars['String']['output']>;
-};
-
-export type LocalizedStringFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  en?: InputMaybe<StringFilter>;
-  es?: InputMaybe<StringFilter>;
-  pt?: InputMaybe<StringFilter>;
-};
-
-export type LocalizedStringSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  en?: InputMaybe<SortOrder>;
-  es?: InputMaybe<SortOrder>;
-  pt?: InputMaybe<SortOrder>;
-};
-
-export type Project = Document & {
-  __typename: 'Project';
+export type Post = Document & {
+  __typename: 'Post';
   /** Date the document was created */
   _createdAt?: Maybe<Scalars['DateTime']['output']>;
   /** Document ID */
@@ -329,19 +258,14 @@ export type Project = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  body?: Maybe<LocalizedBody>;
-  description?: Maybe<LocalizedString>;
-  executedAt?: Maybe<LocalizedString>;
-  image_column_1?: Maybe<Array<Maybe<Image>>>;
-  image_column_2?: Maybe<Array<Maybe<Image>>>;
-  link?: Maybe<Scalars['String']['output']>;
-  read_time?: Maybe<LocalizedString>;
-  slug?: Maybe<LocalizedSlug>;
-  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  title?: Maybe<LocalizedString>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Image>;
+  slug?: Maybe<Slug>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
-export type ProjectFilter = {
+export type PostFilter = {
   /** Apply filters on document level */
   _?: InputMaybe<Sanity_DocumentFilter>;
   _createdAt?: InputMaybe<DatetimeFilter>;
@@ -350,39 +274,33 @@ export type ProjectFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  body?: InputMaybe<LocalizedBodyFilter>;
-  description?: InputMaybe<LocalizedStringFilter>;
-  executedAt?: InputMaybe<LocalizedStringFilter>;
-  link?: InputMaybe<StringFilter>;
-  read_time?: InputMaybe<LocalizedStringFilter>;
-  slug?: InputMaybe<LocalizedSlugFilter>;
-  title?: InputMaybe<LocalizedStringFilter>;
+  description?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
 };
 
-export type ProjectSorting = {
+export type PostSorting = {
   _createdAt?: InputMaybe<SortOrder>;
   _id?: InputMaybe<SortOrder>;
   _key?: InputMaybe<SortOrder>;
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  body?: InputMaybe<LocalizedBodySorting>;
-  description?: InputMaybe<LocalizedStringSorting>;
-  executedAt?: InputMaybe<LocalizedStringSorting>;
-  link?: InputMaybe<SortOrder>;
-  read_time?: InputMaybe<LocalizedStringSorting>;
-  slug?: InputMaybe<LocalizedSlugSorting>;
-  title?: InputMaybe<LocalizedStringSorting>;
+  description?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageSorting>;
+  slug?: InputMaybe<SlugSorting>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type RootQuery = {
   __typename: 'RootQuery';
   Document?: Maybe<Document>;
-  Project?: Maybe<Project>;
+  Post?: Maybe<Post>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   allDocument: Array<Document>;
-  allProject: Array<Project>;
+  allPost: Array<Post>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allSanityImageAsset: Array<SanityImageAsset>;
 };
@@ -393,7 +311,7 @@ export type RootQueryDocumentArgs = {
 };
 
 
-export type RootQueryProjectArgs = {
+export type RootQueryPostArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -416,11 +334,11 @@ export type RootQueryAllDocumentArgs = {
 };
 
 
-export type RootQueryAllProjectArgs = {
+export type RootQueryAllPostArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ProjectSorting>>;
-  where?: InputMaybe<ProjectFilter>;
+  sort?: InputMaybe<Array<PostSorting>>;
+  where?: InputMaybe<PostFilter>;
 };
 
 
@@ -864,51 +782,70 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export type AllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllPostsListingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllProjectsQuery = { __typename: 'RootQuery', allProject: Array<{ __typename: 'Project', _id?: string | null, tags?: Array<string | null> | null, title?: { __typename: 'LocalizedString', pt?: string | null } | null, slug?: { __typename: 'LocalizedSlug', pt?: { __typename: 'Slug', current?: string | null } | null } | null, description?: { __typename: 'LocalizedString', pt?: string | null } | null }> };
+export type AllPostsListingQuery = { __typename: 'RootQuery', allPost: Array<{ __typename: 'Post', title?: string | null, description?: string | null, slug?: { __typename: 'Slug', current?: string | null } | null, image?: { __typename: 'Image', asset?: { __typename: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null }> };
 
-export type ProjectByIdsQueryVariables = Exact<{
-  ids?: InputMaybe<Array<Scalars['ID']['input']> | Scalars['ID']['input']>;
+export type PostBySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type ProjectByIdsQuery = { __typename: 'RootQuery', allProject: Array<{ __typename: 'Project', _id?: string | null, tags?: Array<string | null> | null, title?: { __typename: 'LocalizedString', pt?: string | null } | null, slug?: { __typename: 'LocalizedSlug', pt?: { __typename: 'Slug', current?: string | null } | null } | null, description?: { __typename: 'LocalizedString', pt?: string | null } | null }> };
+export type PostBySlugQuery = { __typename: 'RootQuery', allPost: Array<{ __typename: 'Post', bodyRaw?: any | null, title?: string | null, description?: string | null, slug?: { __typename: 'Slug', current?: string | null } | null, image?: { __typename: 'Image', asset?: { __typename: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null }> };
 
-export type ProjectListingFragment = { __typename: 'Project', _id?: string | null, tags?: Array<string | null> | null, title?: { __typename: 'LocalizedString', pt?: string | null } | null, slug?: { __typename: 'LocalizedSlug', pt?: { __typename: 'Slug', current?: string | null } | null } | null, description?: { __typename: 'LocalizedString', pt?: string | null } | null };
+export type PostListingFragment = { __typename: 'Post', title?: string | null, description?: string | null, slug?: { __typename: 'Slug', current?: string | null } | null, image?: { __typename: 'Image', asset?: { __typename: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null };
 
-export const ProjectListingFragmentDoc = gql`
-    fragment ProjectListing on Project {
-  _id
-  title {
-    pt
+export type PostFullFragment = { __typename: 'Post', bodyRaw?: any | null, title?: string | null, description?: string | null, slug?: { __typename: 'Slug', current?: string | null } | null, image?: { __typename: 'Image', asset?: { __typename: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null };
+
+export type ImageFragment = { __typename: 'Image', asset?: { __typename: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null };
+
+export const ImageFragmentDoc = gql`
+    fragment Image on Image {
+  asset {
+    _id
+    url
   }
-  tags
-  slug {
-    pt {
-      current
-    }
-  }
-  description {
-    pt
+  hotspot {
+    x
+    y
+    width
+    height
   }
 }
     `;
-export const AllProjectsDocument = gql`
-    query AllProjects {
-  allProject {
-    ...ProjectListing
+export const PostListingFragmentDoc = gql`
+    fragment PostListing on Post {
+  title
+  description
+  slug {
+    current
+  }
+  image {
+    ...Image
   }
 }
-    ${ProjectListingFragmentDoc}`;
-export const ProjectByIdsDocument = gql`
-    query ProjectByIds($ids: [ID!]) {
-  allProject(where: {_id: {in: $ids}}) {
-    ...ProjectListing
+    ${ImageFragmentDoc}`;
+export const PostFullFragmentDoc = gql`
+    fragment PostFull on Post {
+  ...PostListing
+  bodyRaw
+}
+    ${PostListingFragmentDoc}`;
+export const AllPostsListingDocument = gql`
+    query AllPostsListing {
+  allPost {
+    ...PostListing
   }
 }
-    ${ProjectListingFragmentDoc}`;
+    ${PostListingFragmentDoc}`;
+export const PostBySlugDocument = gql`
+    query PostBySlug($slug: String) {
+  allPost(where: {slug: {current: {eq: $slug}}}) {
+    ...PostFull
+  }
+}
+    ${PostFullFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -917,11 +854,11 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    AllProjects(variables?: AllProjectsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllProjectsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AllProjectsQuery>(AllProjectsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllProjects', 'query', variables);
+    AllPostsListing(variables?: AllPostsListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllPostsListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AllPostsListingQuery>(AllPostsListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllPostsListing', 'query', variables);
     },
-    ProjectByIds(variables?: ProjectByIdsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProjectByIdsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProjectByIdsQuery>(ProjectByIdsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProjectByIds', 'query', variables);
+    PostBySlug(variables?: PostBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PostBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PostBySlugQuery>(PostBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PostBySlug', 'query', variables);
     }
   };
 }

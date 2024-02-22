@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently --kill-others \"next dev\" \"npm run codegen:watch\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-code-generator",
-    "codegen:watch": "graphql-code-generator --watch"
+    "codegen:watch": "graphql-code-generator --watch",
+    "graphql-deploy": "sanity graphql deploy --force && npm run codegen"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",
+    "@portabletext/react": "^3.0.11",
+    "@sanity/image-url": "^1.0.2",
+    "dotenv": "^16.4.5",
     "next": "14.1.0",
+    "next-sanity": "^8.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sanity": "^3.30.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
@@ -27,6 +33,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "graphql-config": "^5.0.3",
