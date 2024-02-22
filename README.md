@@ -38,6 +38,12 @@ Open [http://localhost:3000](http://localhost:3000)
 
 All the queries are being placed on the `queries.graphql` file. If you prefer to use tags on typescript files, you will have to edit `graphql.config.ts` and `codegen.ts`.
 
+### Troubleshoot
+
+Make sure to restart the VSCode GraphQL process whenever you deploy schema changes!
+
+ <img src="./docs/vscode.png"/>
+
 ### Need some help?
 
 Look for <i>Gustavo Bremm</i> on [Sanity Slack](https://slack.sanity.io/).
