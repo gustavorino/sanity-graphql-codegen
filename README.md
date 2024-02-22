@@ -1,6 +1,6 @@
 # Features
 
-A Next.js project with Sanity and GraphQL setup.
+A Next.js starter project with Sanity and GraphQL/Typescript code generation.
 
 - GraphQL code generation with Typescript integration.
 - VSCode auto-complete for GraphQL queries.
